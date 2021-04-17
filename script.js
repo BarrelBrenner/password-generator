@@ -1,6 +1,5 @@
 // Assignment Code
 let generateBtn = document.querySelector("#generate");
-let copyBtn = document.querySelector("#copy");
 let lowercaseChar = "abcdefghijklmnopqrstuvwxyz";
 let uppercaseChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 let numberChar = "0123456789";
@@ -17,13 +16,13 @@ function determineLength() {
   );
 
   if (passwordLength < 8) {
-    alert("Password length must be a number between 8-128 characters");
+    alert("Not Enough. Password length must be a number between 8-128 characters");
     determineLength();
   } else if (passwordLength > 128) {
-    alert("Password length must be a number between 8-128 characters");
+    alert("Too Many. Password length must be a number between 8-128 characters");
     determineLength();
   } else if (isNaN(passwordLength)) {
-    alert("Password length must be a number between 8-128 characters");
+    alert("Cannot recognize input. Password length must be a number between 8-128 characters");
     determineLength();
   } else {
     alert(
@@ -41,7 +40,7 @@ function determineUppercase() {
   uppercaseCheck = uppercaseCheck.toLowerCase();
 
   if (uppercaseCheck === null || uppercaseCheck === "") {
-    alert("Please answer Y or N");
+    alert("Field is empty. Please answer Y or N");
     determineUppercase();
   } else if (uppercaseCheck === "yes" || uppercaseCheck === "y") {
     uppercaseCheck = true;
@@ -50,7 +49,7 @@ function determineUppercase() {
     uppercaseCheck = false;
     return uppercaseCheck;
   } else {
-    alert("Please answer Y or N");
+    alert("Cannot recognize input. Please answer Y or N");
     determineUppercase();
   }
   return uppercaseCheck;
@@ -64,7 +63,7 @@ function determineNumbers() {
   numberCheck = numberCheck.toLowerCase();
 
   if (numberCheck === null || numberCheck === "") {
-    alert("Please answer Y or N");
+    alert("Field is empty. Please answer Y or N");
     determineNumbers();
   } else if (numberCheck === "yes" || numberCheck === "y") {
     numberCheck = true;
@@ -73,7 +72,7 @@ function determineNumbers() {
     numberCheck = false;
     return numberCheck;
   } else {
-    alert("Please answer Y or N");
+    alert("Cannot recognize input. Please answer Y or N");
     determineNumbers();
   }
   return numberCheck;
@@ -87,7 +86,7 @@ function determineSpecial() {
   specialCheck = specialCheck.toLowerCase();
 
   if (specialCheck === null || specialCheck === "") {
-    alert("Please answer Y or N");
+    alert("Field is empty. Please answer Y or N");
     determineSpecial();
   } else if (specialCheck === "yes" || specialCheck === "y") {
     specialCheck = true;
@@ -96,7 +95,7 @@ function determineSpecial() {
     specialCheck = false;
     return specialCheck;
   } else {
-    alert("Please answer Y or N");
+    alert("Cannot recognize input. Please answer Y or N");
     determineSpecial();
   }
   return specialCheck;
@@ -156,11 +155,3 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-//Add "Copy to Clipboard" button for functionality
-copy = document.getElementById("copy");
-copy.addEventListener("click", () => {
-  password1.click();
-  document.execCommand("copy");
-  alert("Success, Password Copied!");
-});
