@@ -1,25 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-    <div id="random-password">
-        <input type="text" id="password" /> <button id="copy">Copy</button>
-        <div id="settings">
-            <label for="length">Length</label>
-            <input type="number" id="length" value="16" min="8" max="64" />
-            <label for="numbers">Include Numbers</label>
-            <input type="checkbox" id="numbers" checked />
-            <label for="symbols">Include Symbols</label>
-            <input type="checkbox" id="symbols" checked />
-        </div>
-        <button id="generate">Generate Password</button>
-    </div>
-    
+    <section class="wrapper">
+        <header>
+            <h1>Password Generator</h1>
+        </header>
+        <article class="card">
+            <article class="card-header">
+                <h2>Generate a Password</h2>
+            </article>
+            <article class="card-body">
+                <textarea readonly id="password" placeholder="Your Secure Password"
+                    aria-label="Generated Password"></textarea>
+            </article>
+            <article class="card-footer">
+                <button id="generate" class="btn">Generate Password</button>
+                <button id="copy" class="btn">Copy</button>
+            </article>
+        </article>
+    </section>
     <script src="script.js"></script>
 </body>
+
 </html>
