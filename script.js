@@ -92,47 +92,60 @@ let upperCasedCharacters = [
 //Function to Generate Password starting with prompt for length followed by confirmation of character choices
 function generatePassword() {
   let passwordString = "";
+  
   let passwordLength = window.prompt("How many characters do you want in your password?");
-  let hasSpecialChars = window.confirm("Do you want special characters in your password?");
-  let hasNumericChars = window.confirm("Do you want numeric characters in your password?");
-  let hasLowerCase = window.confirm("Do you want lower case characters in your password?");
-  let hasUpperCase = window.confirm("Do you want upper case characters in your password?");
+  if (passwordLength < 7 || passwordLength > 128) {
+    alert("Password is either less than 7 or more than 128 characters, please try again.");
+  } else {
+    
+    let hasSpecialChars = window.confirm("Do you want special characters in your password?");
+    console.log(hasSpecialChars);
+  
+    let hasNumericChars = window.confirm("Do you want numeric characters in your password?");
+    console.log(hasNumericChars);
+  
+    let hasLowerCase = window.confirm("Do you want lower case characters in your password?");
+    console.log(hasLowerCase);
+  
+    let hasUpperCase = window.confirm("Do you want upper case characters in your password?");
+    console.log(hasUpperCase);
+  }
+
+  let caseArray = [];
+  let randomPassword = [];
+  let possibleCharacters = [];
+
+  if (hasSpecialChars == true) {
+    caseArray.push(specialCharacters);
+  }
+
+  if (hasNumericChars == true) {
+    caseArray.push(numericCharacters);
+  }
+
+  if (hasLowerCase = true) {
+    caseArray.push(lowerCasedCharacters);
+  }
+
+  if (hasUpperCase = true) {
+    caseArray.push(upperCasedCharacters);
+  }
+
+  for (i = 0; i < remainingPasswordLength; i++) {
+    password += caseArray[Math.floor(Math.random() * randomPassword.remainingPasswordLength)
+    ];
+
+    return password;
+  }
+
+  // Write password to the #password input
+  function writePassword() {
+    let randomPassword = "";
+    randomPassword = generatePassword();
+    let passwordText = document.querySelector("#password");
+    passwordText.value = randomPassword;
+  }
+
+  // Add event listener to generate button
+  generateBtn.addEventListener("click", writePassword);
 }
-
-let caseArray = [];
-let randomPassword = [];
-let possibleCharacters = [];
-
-if (hasSpecialChars==true){
-  caseArray.push(specialCharacters);
-}
-
-if (hasNumericChars==true){
-  caseArray.push(numericCharacters);
-}
-
-if (hasLowerCase=true){
-  caseArray.push(lowerCasedCharacters);
-}
-
-if (hasUpperCase=true){
-  caseArray.push(upperCasedCharacters);
-}
-
-for (i = 0; i < remainingPasswordLength; i++) {
-  password += caseArray[Math.floor(Math.random() * randomPassword.remainingPasswordLength)
-  ];
-
-  return password;
-}
-
-// Write password to the #password input
-function writePassword() {
-  let randomPassword = "";
-  randomPassword = generatePassword();
-  let passwordText = document.querySelector("#password");
-  passwordText.value = randomPassword;
-}
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
