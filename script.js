@@ -1,5 +1,8 @@
 // Assignment Code for Password Generator using JavaScript
-// Array of special characters to be included in password
+let generateBtn = document.getElementById("generate");
+let copyBtn = document.getElementById("copy");
+
+//Here is an array of SPECIAL characters to be included in password
 let specialCharacters = [
   "@",
   "%",
@@ -26,10 +29,10 @@ let specialCharacters = [
   ".",
 ];
 
-// Array of numeric characters to be included in password
+// Here is an array of NUMERIC characters to be included in password
 let numericCharacters = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
-// Array of lowercase characters to be included in password
+// Here is an array of LOWERCASE characters to be included in password
 let lowerCasedCharacters = [
   "a",
   "b",
@@ -59,7 +62,7 @@ let lowerCasedCharacters = [
   "z",
 ];
 
-// Array of uppercase characters to be included in password
+// Here is an array of UPPERCASE characters to be included in password
 let upperCasedCharacters = [
   "A",
   "B",
@@ -89,63 +92,82 @@ let upperCasedCharacters = [
   "Z",
 ];
 
-//Function to Generate Password starting with prompt for length followed by confirmation of character choices
-function generatePassword() {
-  let passwordString = "";
-  
-  let passwordLength = window.prompt("How many characters do you want in your password?");
-  if (passwordLength < 7 || passwordLength > 128) {
-    alert("Password is either less than 7 or more than 128 characters, please try again.");
-  } else {
-    
-    let hasSpecialChars = window.confirm("Do you want special characters in your password?");
-    console.log(hasSpecialChars);
-  
-    let hasNumericChars = window.confirm("Do you want numeric characters in your password?");
-    console.log(hasNumericChars);
-  
-    let hasLowerCase = window.confirm("Do you want lower case characters in your password?");
-    console.log(hasLowerCase);
-  
-    let hasUpperCase = window.confirm("Do you want upper case characters in your password?");
-    console.log(hasUpperCase);
-  }
+//Function to get characters from the cosmos and shake it around like a scrabble bag
+function getRandom(arr) {
+  let index = Math.floor(Math.random() * arr.length);
+  return arr[index];
+}
 
-  let caseArray = [];
+//Function to Generate Password starting with a prompt for length followed by confirmation of character choices
+function generatePassword() {
   let randomPassword = [];
   let possibleCharacters = [];
-
-  if (hasSpecialChars == true) {
-    caseArray.push(specialCharacters);
+  let passwordLength = window.prompt(
+    "Welcome to this simple Password Generator. How many characters do you want in your password?"
+  );
+  if (passwordLength < 8 || passwordLength > 128) {
+    alert(
+      "Password is either less than 8 or more than 128 characters, refresh & give it another try.");
+      return;
   }
+  else {
+    let hasSpecialChars = window.confirm(
+      "First, Would you like special characters in your password?"
+    );
+    let hasNumericChars = window.confirm(
+      "Next, Would you like numeric characters in your password?"
+    );
+    let hasLowerCase = window.confirm(
+      "Next, Would you like lower case characters in your password?"
+    );
+    let hasUpperCase = window.confirm(
+      "Finally, Would you like upper case characters in your password?"
+    );
 
-  if (hasNumericChars == true) {
-    caseArray.push(numericCharacters);
+    if (hasSpecialChars) {
+      randomPassword.push(getRandom(specialCharacters));
+      possibleCharacters = possibleCharacters.concat(specialCharacters);
+    }
+
+    if (hasNumericChars) {
+      randomPassword.push(getRandom(numericCharacters));
+      possibleCharacters = possibleCharacters.concat(numericCharacters);
+    }
+
+    if (hasLowerCase) {
+      randomPassword.push(getRandom(lowerCasedCharacters));
+      possibleCharacters = possibleCharacters.concat(lowerCasedCharacters);
+    }
+
+    if (hasUpperCase) {
+      randomPassword.push(getRandom(upperCasedCharacters));
+      possibleCharacters = possibleCharacters.concat(upperCasedCharacters);
+    }
   }
+  
 
-  if (hasLowerCase = true) {
-    caseArray.push(lowerCasedCharacters);
+  let remainingPasswordLength = passwordLength - randomPassword.length;
+
+  for (let i = 0; i < remainingPasswordLength; i++) {
+    randomPassword.push(getRandom(possibleCharacters));
   }
-
-  if (hasUpperCase = true) {
-    caseArray.push(upperCasedCharacters);
-  }
-
-  for (i = 0; i < remainingPasswordLength; i++) {
-    password += caseArray[Math.floor(Math.random() * randomPassword.remainingPasswordLength)
-    ];
-
-    return password;
-  }
-
-  // Write password to the #password input
-  function writePassword() {
-    let randomPassword = "";
-    randomPassword = generatePassword();
-    let passwordText = document.querySelector("#password");
-    passwordText.value = randomPassword;
-  }
-
-  // Add event listener to generate button
-  generateBtn.addEventListener("click", writePassword);
+  return randomPassword.join("");
 }
+
+// Function to Write Password to the #password input
+function writePassword() {
+  let randomPassword = generatePassword();
+  let passwordText = document.querySelector("#password");
+  passwordText.value = randomPassword;
+}
+
+// Function to Copy Password onto Clipboard
+function copyPassword() {
+  password.select();
+  document.execCommand('copy');
+  alert("Your Password is Copied Successfully! Test it out to see how strong your new password is.");
+}
+
+// Function to Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
+copyBtn.addEventListener("click", copyPassword);
