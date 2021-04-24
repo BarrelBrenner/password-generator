@@ -92,13 +92,13 @@ let upperCasedCharacters = [
   "Z",
 ];
 
-//Function to get characters from the cosmos and shake it around like a scrabble bag
+// Function to get characters from the cosmos and shake it around like a scrabble bag
 function getRandom(arr) {
   let index = Math.floor(Math.random() * arr.length);
   return arr[index];
 }
 
-//Function to Generate Password starting with a prompt for length followed by confirmation of character choices
+// Function to Generate Password starting with a prompt for length followed by confirmation of character choices
 function generatePassword() {
   let randomPassword = [];
   let possibleCharacters = [];
@@ -145,7 +145,7 @@ function generatePassword() {
     }
   }
   
-
+// This setup determines length of password after prompts are confirmed
   let remainingPasswordLength = passwordLength - randomPassword.length;
 
   for (let i = 0; i < remainingPasswordLength; i++) {
