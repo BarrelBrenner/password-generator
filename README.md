@@ -12,4 +12,6 @@ copyPassword function copies password to clipboard
 
 addEventListener function generates buttons for writing and copying password
 
+Link: https://barrelbrenner.github.io/password-generator/
+
 any questions/comments your feedback is appreciated.
